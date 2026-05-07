@@ -1,0 +1,114 @@
+# ============================================================
+# Leonfindel — .gitignore
+# Stack: Astro + Svelte + Cloudflare Workers + Wrangler + Node
+# ============================================================
+
+# ---------- Dependencies ----------
+node_modules/
+.pnpm-store/
+.yarn/cache/
+.yarn/install-state.gz
+.yarn/build-state.yml
+
+# ---------- Build outputs ----------
+dist/
+.output/
+.vercel/
+.netlify/
+build/
+out/
+
+# Astro
+apps/web/.astro/
+apps/web/dist/
+
+# ---------- Cloudflare / Wrangler ----------
+.wrangler/
+.dev.vars
+.dev.vars.*
+wrangler.toml.bak
+
+# ⚠️ wrangler.toml SÍ se commitea (config del proyecto)
+# Lo que NO se commitea son secrets, que van por `wrangler secret put`
+
+# ---------- Datos del cliente (sensibles) ----------
+# Solo se commitea sample anonimizado en data/sample-catalog.csv
+data/*.xlsx
+data/*.xls
+data/full-catalog.csv
+data/private/
+
+# Migraciones SÍ se commitean
+!data/migrations/
+
+# Schema SÍ se commitea
+!data/schema.sql
+
+# Sample SÍ se commitea
+!data/sample-catalog.csv
+
+# ---------- Secrets y credenciales ----------
+*.pem
+*.key
+*.p12
+.env
+.env.*
+!.env.example
+service-account*.json
+google-creds*.json
+credentials.json
+
+# ---------- IDE / Editor ----------
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ---------- OS ----------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.Spotlight-V100
+.Trashes
+._*
+.AppleDouble
+.LSOverride
+
+# ---------- Logs ----------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.npm/
+.eslintcache
+
+# ---------- Testing ----------
+coverage/
+.nyc_output/
+*.lcov
+playwright-report/
+test-results/
+.vitest-cache/
+
+# ---------- Misc ----------
+*.tsbuildinfo
+.turbo/
+.cache/
+.parcel-cache/
+.tmp/
+tmp/
+
+# ---------- Local-only scripts (desarrollo personal) ----------
+scratch/
+playground/
+*.local.ts
+*.local.js
+NOTES.local.md

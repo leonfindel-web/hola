@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.output/
+build/
+coverage/
+*.min.*
+data/migrations/
+data/sample-catalog.csv
