@@ -1,0 +1,37 @@
+name = "leonfindel-ingest"
+main = "src/index.ts"
+compatibility_date = "2026-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Cron mensual: día 1, 03:00 UTC
+[triggers]
+crons = ["0 3 1 * *"]
+
+# Variables públicas (no secrets). Reemplazar al ejecutar Fase 0/2.
+[vars]
+ENVIRONMENT      = "production"
+VIMEO_USER_ID    = "TO_FILL"     # e.g. "user/12345678"
+FLICKR_USER_ID   = "TO_FILL"     # e.g. "12345678@N00"
+GOOGLE_SHEET_ID  = "TO_FILL"     # ID del Google Sheet del catálogo
+EMBED_MODEL      = "@cf/baai/bge-m3"
+
+# D1
+[[d1_databases]]
+binding       = "DB"
+database_name = "leonfindel"
+database_id   = "TO_FILL"  # `wrangler d1 create leonfindel`
+
+# Vectorize (1024-dim para bge-m3)
+[[vectorize]]
+binding    = "VECTORIZE"
+index_name = "leonfindel-media"
+
+# Workers AI (embeddings)
+[ai]
+binding = "AI"
+
+# Secrets (NO commitear, usar `wrangler secret put`):
+#   VIMEO_TOKEN
+#   FLICKR_API_KEY
+#   GOOGLE_SHEETS_CREDS   (JSON del service account, single line)
+#   ADMIN_SECRET
