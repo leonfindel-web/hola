@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import ResultsGrid from '../../components/ResultsGrid.svelte';
+---
+
+<Base
+  title="Trabajo"
+  description="Galería completa de Leonfindel: video, foto, locaciones y clientes. Buscá por palabra clave."
+>
+  <section class="container">
+    <h1>Trabajo</h1>
+    <p class="muted lead">
+      Buscá por cliente, año, locación, o describí lo que estás buscando — la búsqueda entiende
+      lenguaje natural.
+    </p>
+
+    <ResultsGrid client:load />
+  </section>
+
+  <style>
+    .lead {
+      max-width: 42rem;
+      margin-bottom: 2rem;
+    }
+  </style>
+</Base>

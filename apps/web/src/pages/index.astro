@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Archivo audiovisual buscable"
+  description="Productora audiovisual chilena. Más de 20 años de archivo profesional en video y fotografía, ahora indexado y buscable."
+>
+  <section class="hero container">
+    <h1>Archivo audiovisual,<br /><span class="accent">indexado y buscable.</span></h1>
+    <p class="lead muted">
+      Más de 20 años de trabajo en video y fotografía, organizados en una sola galería.
+      Buscá por cliente, año, locación o palabra clave.
+    </p>
+    <div class="cta">
+      <a class="btn btn--primary" href="/work">Explorar el portfolio</a>
+      <a class="btn" href="/contact">Contacto</a>
+    </div>
+  </section>
+
+  <style>
+    .hero {
+      padding-block: clamp(3rem, 10vw, 7rem);
+    }
+    .hero h1 {
+      font-size: clamp(2.25rem, 6vw, 4.5rem);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+    .accent {
+      color: var(--accent);
+    }
+    .lead {
+      max-width: 38rem;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      margin-bottom: 2rem;
+    }
+    .cta {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-weight: 500;
+      transition: border-color 0.15s ease;
+    }
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .btn--primary {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+    .btn--primary:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+  </style>
+</Base>

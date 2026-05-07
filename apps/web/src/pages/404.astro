@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="No encontrado" description="Esta página no existe.">
+  <section class="container narrow">
+    <h1>404</h1>
+    <p>La página que buscás no existe o se movió.</p>
+    <p><a href="/">Volver al inicio</a> · <a href="/work">Ir al portfolio</a></p>
+  </section>
+
+  <style>
+    .narrow {
+      max-width: 60ch;
+      text-align: center;
+      padding-block: 4rem;
+    }
+  </style>
+</Base>

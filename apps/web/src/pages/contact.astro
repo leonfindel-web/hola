@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Contacto" description="Contactá a Leonfindel para nuevos proyectos audiovisuales.">
+  <section class="container narrow">
+    <h1>Contacto</h1>
+    <p class="muted">
+      <em>Datos de contacto pendientes — el cliente confirma email y redes en Fase 7.</em>
+    </p>
+    <ul>
+      <li><a href="mailto:hola@leonfindel.cl">hola@leonfindel.cl</a> <span class="faint">(placeholder)</span></li>
+      <li><a href="https://vimeo.com/leonfindel" rel="noopener">Vimeo</a></li>
+      <li><a href="https://www.flickr.com/" rel="noopener">Flickr</a></li>
+    </ul>
+  </section>
+
+  <style>
+    .narrow {
+      max-width: 60ch;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-block: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  </style>
+</Base>
