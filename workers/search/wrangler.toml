@@ -1,0 +1,24 @@
+name = "leonfindel-search"
+main = "src/index.ts"
+compatibility_date = "2026-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+ENVIRONMENT     = "production"
+EMBED_MODEL     = "@cf/baai/bge-m3"
+ALLOWED_ORIGINS = "https://leonfindel.cl,https://www.leonfindel.cl,http://localhost:4321"
+
+[[d1_databases]]
+binding       = "DB"
+database_name = "leonfindel"
+database_id   = "TO_FILL"  # mismo de ingest
+
+[[vectorize]]
+binding    = "VECTORIZE"
+index_name = "leonfindel-media"
+
+[ai]
+binding = "AI"
+
+# Secrets (NO commitear):
+#   ADMIN_SECRET  (mismo string que ingest, para endpoints internos)
