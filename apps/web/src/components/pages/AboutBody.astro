@@ -1,0 +1,73 @@
+---
+import { t, type Lang } from '../../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const dict = t(lang);
+
+const capabilities =
+  lang === 'es'
+    ? ['Cine industrial', 'Documental académico', 'Video corporativo', 'Fotografía', 'Aéreo / drone', 'Archivo + catalogación']
+    : ['Industrial film', 'Academic documentary', 'Corporate video', 'Photography', 'Aerial / drone', 'Archive + cataloguing'];
+---
+
+<section class="page container">
+  <p class="page__eyebrow">{lang === 'es' ? 'Estudio' : 'Studio'}</p>
+  <h1>{dict.about.title}</h1>
+  <p class="page__lead">{dict.about.body}</p>
+
+  <h2 class="page__sub">{dict.about.capabilitiesTitle}</h2>
+  <ul class="caps">
+    {capabilities.map((c) => <li>{c}</li>)}
+  </ul>
+</section>
+
+<style>
+  .page {
+    max-width: 880px;
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .page__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+    margin: 0 0 0.75rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0 0 1.5rem;
+  }
+  .page__lead {
+    font-size: 1.25rem;
+    color: var(--color-fg);
+    max-width: var(--maxw-prose);
+    line-height: 1.5;
+  }
+  .page__sub {
+    margin-top: 3rem;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-fg-muted);
+  }
+  .caps {
+    list-style: none;
+    padding: 0;
+    margin: 1.25rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.6rem;
+  }
+  .caps li {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-bg-card);
+    font-size: 0.95rem;
+  }
+</style>

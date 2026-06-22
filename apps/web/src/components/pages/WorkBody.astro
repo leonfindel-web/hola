@@ -1,0 +1,78 @@
+---
+import ArchiveBrowser from '../ArchiveBrowser.svelte';
+import { t, localizedPath, type Lang } from '../../lib/i18n';
+import { getAllPieces, getFacets, toLite } from '../../lib/catalog-data';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const dict = t(lang);
+
+const pieces = getAllPieces();
+const facets = getFacets(pieces);
+const lite = pieces.map(toLite);
+const workBase = localizedPath(lang, '/work');
+
+// Cap the client/place option lists so the JSON payload stays light; the long
+// tail is still searchable via the free-text box.
+const clients = facets.clients.slice(0, 80);
+const places = facets.places.slice(0, 60);
+---
+
+<section class="container work">
+  <header class="work__head">
+    <p class="work__eyebrow">{lang === 'es' ? 'Catálogo' : 'Catalogue'}</p>
+    <h1>{dict.work.title}</h1>
+    <p class="work__intro muted">{dict.work.intro}</p>
+  </header>
+
+  <ArchiveBrowser
+    client:load
+    pieces={lite}
+    serviceTypes={facets.serviceTypes}
+    clients={clients}
+    years={facets.years}
+    places={places}
+    workBase={workBase}
+    dict={{
+      searchPlaceholder: dict.work.searchPlaceholder,
+      filterAll: dict.work.filterAll,
+      filterService: dict.work.filterService,
+      filterClient: dict.work.filterClient,
+      filterYear: dict.work.filterYear,
+      filterPlace: dict.work.filterPlace,
+      clearFilters: dict.work.clearFilters,
+      emptyDefault: dict.work.emptyDefault,
+      emptyNoResults: dict.work.emptyNoResults,
+      nounSingular: dict.work.nounSingular,
+      nounPlural: dict.work.nounPlural,
+    }}
+    serviceLabels={dict.serviceType}
+  />
+</section>
+
+<style>
+  .work {
+    padding-block: clamp(2rem, 5vw, 3.5rem);
+  }
+  .work__head {
+    margin-bottom: 2.25rem;
+  }
+  .work__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+    margin: 0 0 0.75rem;
+  }
+  .work__head h1 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    margin: 0 0 0.75rem;
+  }
+  .work__intro {
+    max-width: 46rem;
+    font-size: 1.05rem;
+  }
+</style>

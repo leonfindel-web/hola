@@ -1,0 +1,69 @@
+---
+import { t, type Lang } from '../../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const dict = t(lang);
+
+const email = 'contacto@leonfindel.cl';
+---
+
+<section class="page container">
+  <p class="page__eyebrow">{lang === 'es' ? 'Contacto' : 'Get in touch'}</p>
+  <h1>{dict.contact.title}</h1>
+  <p class="page__lead">{dict.contact.body}</p>
+
+  <dl class="contact">
+    <dt>{dict.contact.emailLabel}</dt>
+    <dd><a href={`mailto:${email}`}>{email}</a></dd>
+    <dt>{lang === 'es' ? 'Lugar' : 'Based in'}</dt>
+    <dd>Chile</dd>
+  </dl>
+</section>
+
+<style>
+  .page {
+    max-width: 760px;
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .page__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-accent);
+    margin: 0 0 0.75rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0 0 1.5rem;
+  }
+  .page__lead {
+    font-size: 1.2rem;
+    color: var(--color-fg);
+    max-width: var(--maxw-prose);
+  }
+  .contact {
+    margin: 2.5rem 0 0;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.6rem 2rem;
+  }
+  .contact dt {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-fg-faint);
+    align-self: center;
+  }
+  .contact dd {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+  .contact a:hover {
+    color: var(--color-accent);
+  }
+</style>

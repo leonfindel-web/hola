@@ -1,0 +1,383 @@
+[
+ {
+  "fecha": "20220614",
+  "codigo": "P485",
+  "proyecto": "RUTA 78 SACYR Americo Vespucio con Ruta 70",
+  "cliente": "SACYR",
+  "tipo": "Industrial",
+  "tags": [
+   "ruta",
+   "sacyr",
+   "americo",
+   "vespucio",
+   "resolución",
+   "prores"
+  ],
+  "lugar": "https://vimeo.com/720494578/64bfc63588",
+  "vimeoId": "720494578",
+  "flickrUrl": "https://flic.kr/s/aHBqjzUk81",
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://flic.kr/s/aHBqjzUk81"
+ },
+ {
+  "fecha": "20220621",
+  "codigo": "P485",
+  "proyecto": "RUTA 78 SACYR Melipilla",
+  "cliente": "SACYR",
+  "tipo": "Industrial",
+  "tags": [
+   "ruta",
+   "sacyr",
+   "melipilla",
+   "resolución",
+   "prores"
+  ],
+  "lugar": "https://vimeo.com/723328988",
+  "vimeoId": "723328988",
+  "flickrUrl": "https://flic.kr/s/aHBqjzVuMf",
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://flic.kr/s/aHBqjzVuMf"
+ },
+ {
+  "fecha": "20220621",
+  "codigo": "P485",
+  "proyecto": "RUTA 78 SACYR Rinconada",
+  "cliente": "SACYR",
+  "tipo": "Industrial",
+  "tags": [
+   "ruta",
+   "sacyr",
+   "rinconada",
+   "resolución",
+   "prores"
+  ],
+  "lugar": "https://vimeo.com/723712876",
+  "vimeoId": "723712876",
+  "flickrUrl": "https://flic.kr/s/aHBqjzVr7C",
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://flic.kr/s/aHBqjzVr7C"
+ },
+ {
+  "fecha": "20220621",
+  "codigo": "P485",
+  "proyecto": "RUTA 78 SACYR Isabel Riquelme con Autopista Central",
+  "cliente": "SACYR",
+  "tipo": "Industrial",
+  "tags": [
+   "ruta",
+   "sacyr",
+   "isabel",
+   "riquelme",
+   "autopista",
+   "central"
+  ],
+  "lugar": "https://vimeo.com/723333325",
+  "vimeoId": "723333325",
+  "flickrUrl": "https://flic.kr/s/aHBqjzVr7h",
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://flic.kr/s/aHBqjzVr7h"
+ },
+ {
+  "fecha": "20220621",
+  "codigo": "P485",
+  "proyecto": "RUTA 78 SACYR Malloco",
+  "cliente": "SACYR",
+  "tipo": "Industrial",
+  "tags": [
+   "ruta",
+   "sacyr",
+   "malloco",
+   "resolución",
+   "prores"
+  ],
+  "lugar": "https://vimeo.com/723316751",
+  "vimeoId": "723316751",
+  "flickrUrl": "https://flic.kr/s/aHBqjzVtbL",
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://flic.kr/s/aHBqjzVtbL"
+ },
+ {
+  "fecha": "20171011",
+  "codigo": "AP85V1",
+  "proyecto": "USM Edificio Vida Universitaria Solo Videos ★",
+  "cliente": "Universidad Tecnica Federico Santa Maria",
+  "tipo": "Academico",
+  "tags": [
+   "usm",
+   "edificio",
+   "vida",
+   "universitaria",
+   "solo",
+   "videos"
+  ],
+  "lugar": "Fachada del SHOA,Valparaiso",
+  "vimeoId": "240020604",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "USM Edificio Vida Universitaria Solo Videos ★"
+ },
+ {
+  "fecha": "20171011",
+  "codigo": "AP85V3",
+  "proyecto": "USM Edificio Vida Universitaria ★",
+  "cliente": "Universidad Tecnica Federico Santa Maria",
+  "tipo": "Academico",
+  "tags": [
+   "usm",
+   "edificio",
+   "vida",
+   "universitaria",
+   "santiago"
+  ],
+  "lugar": "Santiago",
+  "vimeoId": "239056836",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "USM Edificio Vida Universitaria ★"
+ },
+ {
+  "fecha": "2016-10-10",
+  "codigo": "AP57V1",
+  "proyecto": "Masisa",
+  "cliente": "Masisa",
+  "tipo": "Corporativo",
+  "tags": [
+   "masisa",
+   "santiago"
+  ],
+  "lugar": "Santiago",
+  "vimeoId": "186329149",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://vimeo.com/186329149"
+ },
+ {
+  "fecha": "20171107",
+  "codigo": "AP59V1",
+  "proyecto": "Masisa Parte 1 ★",
+  "cliente": "Masisa",
+  "tipo": "Corporativo",
+  "tags": [
+   "masisa",
+   "parte"
+  ],
+  "lugar": null,
+  "vimeoId": "243923603",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "Masisa Parte 1 ★"
+ },
+ {
+  "fecha": "2016-10-28",
+  "codigo": "AP94V1",
+  "proyecto": "Dron Fuego",
+  "cliente": null,
+  "tipo": "Industrial",
+  "tags": [
+   "dron",
+   "fuego",
+   "santiago"
+  ],
+  "lugar": "Santiago",
+  "vimeoId": "189556647",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://vimeo.com/189556647"
+ },
+ {
+  "fecha": "2016-09-03",
+  "codigo": "AP84V1",
+  "proyecto": "CHILE DRONE NATIONALS 2016  - Drones de carrera",
+  "cliente": null,
+  "tipo": "Industrial",
+  "tags": [
+   "chile",
+   "drone",
+   "nationals",
+   "drones",
+   "carrera",
+   "santiago"
+  ],
+  "lugar": "Santiago",
+  "vimeoId": "184011598",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://vimeo.com/184011598"
+ },
+ {
+  "fecha": "2016-03-30",
+  "codigo": "AP69V1",
+  "proyecto": "PACE Enjoy",
+  "cliente": null,
+  "tipo": "Academico",
+  "tags": [
+   "pace",
+   "enjoy",
+   "santiago"
+  ],
+  "lugar": "Santiago",
+  "vimeoId": "173461904",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://vimeo.com/173461904"
+ },
+ {
+  "fecha": "2016-04-25",
+  "codigo": "AP98V1",
+  "proyecto": "Intruccion a la ingenieria",
+  "cliente": null,
+  "tipo": "Academico",
+  "tags": [
+   "intruccion",
+   "ingenieria",
+   "casa",
+   "central",
+   "valparaiso"
+  ],
+  "lugar": "Casa Central Valparaiso",
+  "vimeoId": "183481524",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://vimeo.com/183481524"
+ },
+ {
+  "fecha": "2016-07-15",
+  "codigo": "AP72V1",
+  "proyecto": "WorkShop, De la Colaboracion al Exito",
+  "cliente": null,
+  "tipo": "Academico",
+  "tags": [
+   "workshop",
+   "colaboracion",
+   "exito"
+  ],
+  "lugar": null,
+  "vimeoId": "179830232",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://vimeo.com/179830232"
+ },
+ {
+  "fecha": "2016-07-15",
+  "codigo": "AP80V1",
+  "proyecto": "Mentorias",
+  "cliente": null,
+  "tipo": "Academico",
+  "tags": [
+   "mentorias"
+  ],
+  "lugar": null,
+  "vimeoId": "192969244",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://vimeo.com/192969244"
+ },
+ {
+  "fecha": "2016-08-11",
+  "codigo": "AP75V1",
+  "proyecto": "Redes sociales para emprendedores",
+  "cliente": null,
+  "tipo": "Academico",
+  "tags": [
+   "redes",
+   "sociales",
+   "emprendedores",
+   "quillota"
+  ],
+  "lugar": "Quillota",
+  "vimeoId": "179755998",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://vimeo.com/179755998"
+ },
+ {
+  "fecha": "2016-08-12",
+  "codigo": "AP50V1",
+  "proyecto": "Tedx USM",
+  "cliente": "Universidad Tecnica Federico Santa Maria",
+  "tipo": "Academico",
+  "tags": [
+   "tedx",
+   "usm",
+   "valparaíso"
+  ],
+  "lugar": "Valparaíso",
+  "vimeoId": "179657300",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://vimeo.com/179657300"
+ },
+ {
+  "fecha": "2016-09-30",
+  "codigo": "AP68V1",
+  "proyecto": "Open Dea",
+  "cliente": null,
+  "tipo": "Academico",
+  "tags": [
+   "open",
+   "dea"
+  ],
+  "lugar": "AC3E",
+  "vimeoId": "188041976",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://vimeo.com/188041976"
+ },
+ {
+  "fecha": "2016-10-12",
+  "codigo": "AP56V1",
+  "proyecto": "Seminario Masisa",
+  "cliente": "Masisa",
+  "tipo": "Corporativo",
+  "tags": [
+   "seminario",
+   "masisa",
+   "santiago"
+  ],
+  "lugar": "Santiago",
+  "vimeoId": "189850087",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://vimeo.com/189850087"
+ },
+ {
+  "fecha": "2016-10-18",
+  "codigo": "AP66V1",
+  "proyecto": "Charla Salud Mental",
+  "cliente": null,
+  "tipo": "Academico",
+  "tags": [
+   "charla",
+   "salud",
+   "mental",
+   "universidad",
+   "san",
+   "sebastían"
+  ],
+  "lugar": "Universidad San Sebastían, Bellavista",
+  "vimeoId": "189791016",
+  "flickrUrl": null,
+  "starred": true,
+  "excluir": false,
+  "descripcion": "https://vimeo.com/189791016"
+ }
+]

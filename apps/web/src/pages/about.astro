@@ -1,26 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
+import AboutBody from '../components/pages/AboutBody.astro';
+import { t } from '../lib/i18n';
+
+const lang = 'en' as const;
+const dict = t(lang);
 ---
 
-<Base title="Sobre Leonfindel" description="Productora audiovisual chilena con más de 20 años de archivo profesional.">
-  <section class="container narrow">
-    <h1>Sobre Leonfindel</h1>
-    <p>
-      Leonfindel es una productora audiovisual chilena con un archivo profesional construido a lo
-      largo de más de dos décadas. Trabajo en video y fotografía para clientes locales e
-      internacionales.
-    </p>
-    <p class="muted">
-      <em>Texto definitivo pendiente — el cliente lo ajusta al cierre del proyecto.</em>
-    </p>
-  </section>
-
-  <style>
-    .narrow {
-      max-width: 60ch;
-    }
-    p {
-      margin-block: 1rem;
-    }
-  </style>
+<Base lang={lang} altPath="/about" title={dict.about.title} description={dict.about.body}>
+  <AboutBody lang={lang} />
 </Base>

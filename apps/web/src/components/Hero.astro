@@ -1,0 +1,226 @@
+---
+import { PRIMARY_HERO } from '../lib/catalog-data';
+import { t, localizedPath, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const dict = t(lang);
+const hero = PRIMARY_HERO;
+const workHref = localizedPath(lang, '/work');
+const aboutHref = localizedPath(lang, '/about');
+
+// Background loop is loaded only on desktop, lazily, via the script below.
+// Poster image is always present as the immediate / reduced-motion fallback.
+const videoSrc = `https://player.vimeo.com/progressive_redirect/playback/${hero.vimeoId}`;
+---
+
+<section class="hero" data-vimeo-id={hero.vimeoId}>
+  <div class="hero__media" aria-hidden="true">
+    <img
+      class="hero__poster"
+      src={hero.thumbnail}
+      alt=""
+      fetchpriority="high"
+      decoding="async"
+    />
+    <div class="hero__scrim"></div>
+    <div class="hero__vignette"></div>
+  </div>
+
+  <div class="container hero__inner">
+    <p class="hero__eyebrow">Leonfindel — {hero.serviceType}</p>
+    <h1 class="hero__title">{dict.home.h1}</h1>
+    <p class="hero__sub">{dict.home.sub}</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href={workHref}>{dict.home.ctaPrimary}</a>
+      <a class="btn" href={aboutHref}>{dict.home.ctaSecondary}</a>
+    </div>
+    <p class="hero__hint faint">{dict.home.enterArchive}</p>
+  </div>
+
+  <div class="hero__credit">
+    <span class="hero__credit-code">{hero.vimeoId}</span>
+    <span class="hero__credit-title">{hero.title}</span>
+  </div>
+</section>
+
+<script type="module" data-hero-loop>
+  // Load the background video loop only on a real desktop viewport, and only
+  // when the user has not asked to reduce motion. Mobile keeps the poster.
+  const wantsMotion =
+    window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+  const isDesktop = window.matchMedia('(min-width: 1024px) and (pointer: fine)').matches;
+
+  if (wantsMotion && isDesktop) {
+    const section = document.querySelector('.hero');
+    if (section) {
+      const id = section.getAttribute('data-vimeo-id');
+      const frame = document.createElement('iframe');
+      frame.className = 'hero__video';
+      frame.setAttribute('aria-hidden', 'true');
+      frame.setAttribute('tabindex', '-1');
+      frame.allow = 'autoplay; muted';
+      frame.title = '';
+      // Background-only Vimeo embed: muted, looping, no UI, no audio track.
+      frame.src =
+        `https://player.vimeo.com/video/${id}` +
+        '?background=1&autoplay=1&loop=1&muted=1&autopause=0&controls=0&dnt=1';
+      const media = section.querySelector('.hero__media');
+      if (media) {
+        frame.addEventListener('load', () => section.classList.add('hero--video-ready'));
+        media.appendChild(frame);
+      }
+    }
+  }
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: clamp(34rem, 88vh, 60rem);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .hero__poster,
+  :global(.hero__video) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 0;
+  }
+  /* Cover-fit the 16:9 iframe like object-fit: cover. */
+  :global(.hero__video) {
+    width: 177.78vh; /* 16/9 of viewport height */
+    min-width: 100%;
+    height: 56.25vw; /* 9/16 of viewport width */
+    min-height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 1.2s var(--ease);
+    pointer-events: none;
+  }
+  .hero.hero--video-ready :global(.hero__video) {
+    opacity: 1;
+  }
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(8, 8, 9, 0.92) 0%,
+      rgba(8, 8, 9, 0.62) 42%,
+      rgba(8, 8, 9, 0.28) 100%
+    );
+  }
+  .hero__vignette {
+    position: absolute;
+    inset: 0;
+    background: var(--vignette);
+  }
+  .hero__inner {
+    padding-block: clamp(3rem, 8vw, 6rem);
+    max-width: 56rem;
+  }
+  .hero__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 1.25rem;
+  }
+  .hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 7vw, 5.25rem);
+    line-height: 1.02;
+    letter-spacing: var(--tracking-tight);
+    margin: 0 0 1.25rem;
+    text-wrap: balance;
+  }
+  .hero__sub {
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    color: var(--color-fg-muted);
+    max-width: 40rem;
+    margin: 0 0 2rem;
+  }
+  .hero__cta {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .hero__hint {
+    margin-top: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: var(--tracking-code);
+  }
+  .hero__credit {
+    position: absolute;
+    bottom: 1.1rem;
+    right: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.15rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-fg-faint);
+    text-align: right;
+    max-width: 50%;
+  }
+  .hero__credit-code {
+    color: var(--color-accent);
+    letter-spacing: var(--tracking-code);
+  }
+  .hero__credit-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+  @media (max-width: 640px) {
+    .hero__credit {
+      display: none;
+    }
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.8rem 1.4rem;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition:
+      border-color var(--dur-fast) var(--ease),
+      color var(--dur-fast) var(--ease),
+      background var(--dur-fast) var(--ease);
+  }
+  .btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+  .btn--primary {
+    background: var(--color-accent);
+    color: #0a0a0b;
+    border-color: var(--color-accent);
+  }
+  .btn--primary:hover {
+    background: transparent;
+    color: var(--color-accent);
+  }
+</style>

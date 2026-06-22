@@ -1,0 +1,245 @@
+---
+import { t, localizedPath, type Lang } from '../../lib/i18n';
+import type { CatalogPiece } from '../../lib/catalog-data';
+
+interface Props {
+  lang: Lang;
+  piece: CatalogPiece;
+}
+const { lang, piece } = Astro.props;
+const dict = t(lang);
+const backHref = localizedPath(lang, '/work');
+
+const serviceLabel = piece.serviceType ? dict.serviceType[piece.serviceType] : null;
+
+const metaRows: { label: string; value: string; mono?: boolean }[] = [];
+if (piece.client) metaRows.push({ label: dict.detail.client, value: piece.client });
+if (serviceLabel) metaRows.push({ label: dict.detail.type, value: serviceLabel });
+if (piece.year) metaRows.push({ label: dict.detail.year, value: String(piece.year), mono: true });
+if (piece.place) metaRows.push({ label: dict.detail.place, value: piece.place });
+if (piece.code) metaRows.push({ label: dict.detail.code, value: piece.code, mono: true });
+---
+
+<article class="detail container">
+  <a class="back" href={backHref}>← {dict.detail.back}</a>
+
+  <header class="detail__head">
+    {piece.code && <p class="detail__code">{piece.code}</p>}
+    <h1>{piece.title}</h1>
+    {
+      (piece.client || serviceLabel) && (
+        <p class="detail__sub">
+          {[piece.client, serviceLabel, piece.year].filter(Boolean).join(' · ')}
+        </p>
+      )
+    }
+  </header>
+
+  <div class="player">
+    {
+      piece.embedUrl ? (
+        <iframe
+          src={`${piece.embedUrl}?dnt=1`}
+          title={piece.title}
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+        />
+      ) : piece.thumbnail ? (
+        <img src={piece.thumbnail} alt={piece.title} />
+      ) : (
+        <div class="player__placeholder">
+          <span class="player__mark">{piece.code ?? piece.title}</span>
+          <span class="player__note">{dict.detail.noPreview}</span>
+        </div>
+      )
+    }
+  </div>
+
+  {
+    piece.vimeoId && (
+      <p class="watch">
+        <a href={`https://vimeo.com/${piece.vimeoId}`} rel="noopener" target="_blank">
+          {dict.detail.watchOnVimeo} ↗
+        </a>
+      </p>
+    )
+  }
+
+  <div class="detail__grid">
+    <dl class="meta">
+      {
+        metaRows.map((row) => (
+          <div class="meta__row">
+            <dt>{row.label}</dt>
+            <dd class={row.mono ? 'mono' : ''}>{row.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <div class="narrative">
+      {
+        piece.narrative && (
+          <>
+            <h2>{dict.detail.narrative}</h2>
+            <p>{piece.narrative}</p>
+          </>
+        )
+      }
+      {
+        piece.tags.length > 0 && (
+          <ul class="tags">
+            {piece.tags.map((tag) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </div>
+</article>
+
+<style>
+  .detail {
+    max-width: 1080px;
+    padding-block: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .back {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: var(--tracking-code);
+    color: var(--color-fg-muted);
+    margin-bottom: 2rem;
+  }
+  .back:hover {
+    color: var(--color-accent);
+  }
+  .detail__code {
+    font-family: var(--font-mono);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    letter-spacing: var(--tracking-code);
+    color: var(--color-accent);
+    margin: 0 0 0.6rem;
+  }
+  .detail__head h1 {
+    font-size: clamp(1.9rem, 4.5vw, 3rem);
+    line-height: 1.08;
+    margin: 0 0 0.6rem;
+    text-wrap: balance;
+  }
+  .detail__sub {
+    color: var(--color-fg-muted);
+    margin: 0;
+    font-size: 1.05rem;
+  }
+  .player {
+    aspect-ratio: 16 / 9;
+    background: var(--color-bg-elev);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-block: 2rem 1rem;
+  }
+  .player iframe,
+  .player img {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  .player img {
+    object-fit: cover;
+  }
+  .player__placeholder {
+    height: 100%;
+    display: grid;
+    place-content: center;
+    gap: 0.75rem;
+    text-align: center;
+    padding: 1rem;
+  }
+  .player__mark {
+    font-family: var(--font-mono);
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    color: var(--color-fg-faint);
+    letter-spacing: var(--tracking-code);
+  }
+  .player__note {
+    color: var(--color-fg-muted);
+    font-size: 0.9rem;
+  }
+  .watch {
+    margin: 0 0 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+  .watch a {
+    color: var(--color-accent);
+  }
+  .detail__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    gap: 2.5rem;
+  }
+  @media (max-width: 760px) {
+    .detail__grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+  }
+  .meta {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .meta__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .meta dt {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-fg-faint);
+  }
+  .meta dd {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .meta dd.mono {
+    font-family: var(--font-mono);
+    letter-spacing: var(--tracking-code);
+  }
+  .narrative h2 {
+    font-size: 1.1rem;
+    margin: 0 0 0.75rem;
+  }
+  .narrative p {
+    max-width: var(--maxw-prose);
+    color: var(--color-fg);
+    margin: 0 0 1.5rem;
+  }
+  .tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tags li {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    color: var(--color-fg-muted);
+  }
+</style>

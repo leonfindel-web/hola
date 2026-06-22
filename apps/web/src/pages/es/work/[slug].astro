@@ -1,0 +1,59 @@
+---
+import Base from '../../../layouts/Base.astro';
+import WorkDetailBody from '../../../components/pages/WorkDetailBody.astro';
+import { getAllPieces, type CatalogPiece } from '../../../lib/catalog-data';
+import { structuredDataForItem } from '../../../lib/seo';
+import type { MediaItem } from '@shared/types';
+
+export function getStaticPaths() {
+  return getAllPieces().map((piece) => ({
+    params: { slug: piece.slug },
+    props: { piece },
+  }));
+}
+
+interface Props {
+  piece: CatalogPiece;
+}
+
+const { piece } = Astro.props;
+const lang = 'es' as const;
+
+const asMedia: MediaItem = {
+  code: piece.code ?? piece.slug,
+  source: piece.vimeoId ? 'vimeo' : 'excel-only',
+  source_id: piece.vimeoId,
+  source_url: piece.vimeoId ? `https://vimeo.com/${piece.vimeoId}` : null,
+  type: piece.vimeoId ? 'video' : 'document',
+  title: piece.title,
+  client: piece.client,
+  project: piece.title,
+  location: piece.place,
+  year: piece.year,
+  description: piece.narrative,
+  tags: piece.tags,
+  thumbnail_url: piece.thumbnail,
+  duration_sec: null,
+  width: null,
+  height: null,
+  embed_url: piece.embedUrl,
+  created_at: null,
+  indexed_at: 0,
+  vector_id: null,
+};
+
+const description = piece.narrative ?? `${piece.title} — Leonfindel`;
+const imageProp = piece.thumbnail ? { image: piece.thumbnail } : {};
+---
+
+<Base
+  lang={lang}
+  altPath={`/work/${piece.slug}`}
+  title={piece.title}
+  description={description}
+  type={piece.vimeoId ? 'video.other' : 'article'}
+  {...imageProp}
+  jsonLd={structuredDataForItem(asMedia)}
+>
+  <WorkDetailBody lang={lang} piece={piece} />
+</Base>

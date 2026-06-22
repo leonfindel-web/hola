@@ -1,17 +1,39 @@
 ---
 import '../styles/global.css';
 import { buildMeta, type MetaInput } from '../lib/seo';
+import { t, localizedPath, DEFAULT_LANG, type Lang } from '../lib/i18n';
 
 interface Props extends MetaInput {
   jsonLd?: object | null;
+  lang?: Lang;
+  /** Path WITHOUT language prefix, used to build the language-toggle href. */
+  altPath?: string;
 }
 
-const { jsonLd = null, ...metaInput } = Astro.props;
+const {
+  jsonLd = null,
+  lang = DEFAULT_LANG,
+  altPath = '/',
+  ...metaInput
+} = Astro.props;
+
 const meta = buildMeta({ path: Astro.url.pathname, ...metaInput });
+const dict = t(lang);
+const otherLang: Lang = lang === 'en' ? 'es' : 'en';
+const togglePath = localizedPath(otherLang, altPath);
+const htmlLang = lang === 'es' ? 'es' : 'en';
+const ogLocale = lang === 'es' ? 'es_CL' : 'en';
+
+const nav = [
+  { href: localizedPath(lang, '/work'), label: dict.nav.work },
+  { href: localizedPath(lang, '/about'), label: dict.nav.about },
+  { href: localizedPath(lang, '/contact'), label: dict.nav.contact },
+];
+const homeHref = localizedPath(lang, '/');
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={htmlLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,7 +49,7 @@ const meta = buildMeta({ path: Astro.url.pathname, ...metaInput });
     <meta property="og:type" content={meta.ogType} />
     <meta property="og:url" content={meta.url} />
     {meta.image && <meta property="og:image" content={meta.image} />}
-    <meta property="og:locale" content="es_CL" />
+    <meta property="og:locale" content={ogLocale} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={meta.title} />
@@ -43,11 +65,14 @@ const meta = buildMeta({ path: Astro.url.pathname, ...metaInput });
   <body>
     <header class="site-header">
       <div class="container site-header__inner">
-        <a href="/" class="brand" aria-label="Leonfindel — inicio">Leonfindel</a>
+        <a href={homeHref} class="brand" aria-label="Leonfindel">
+          Leonfindel<span class="brand__mark" aria-hidden="true">·archivo</span>
+        </a>
         <nav aria-label="Principal">
-          <a href="/work">Trabajo</a>
-          <a href="/about">Sobre</a>
-          <a href="/contact">Contacto</a>
+          {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+          <a class="lang-toggle" href={togglePath} hreflang={otherLang} rel="alternate">
+            {dict.meta.switchTo}
+          </a>
         </nav>
       </div>
     </header>
@@ -59,51 +84,80 @@ const meta = buildMeta({ path: Astro.url.pathname, ...metaInput });
     <footer class="site-footer">
       <div class="container site-footer__inner">
         <span class="muted">© {new Date().getFullYear()} Leonfindel</span>
-        <span class="faint">Productora audiovisual chilena</span>
+        <span class="faint">{dict.footer.tagline}</span>
       </div>
     </footer>
 
     <style>
       .site-header {
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid var(--color-border);
         padding-block: 1rem;
         position: sticky;
         top: 0;
-        background: rgba(14, 14, 14, 0.85);
-        backdrop-filter: saturate(180%) blur(8px);
-        z-index: 10;
+        background: var(--color-bg-overlay);
+        backdrop-filter: saturate(160%) blur(10px);
+        z-index: 20;
       }
       .site-header__inner {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: baseline;
         gap: 1rem;
       }
       .brand {
         font-weight: 700;
-        letter-spacing: -0.01em;
+        letter-spacing: var(--tracking-tight);
         font-size: 1.125rem;
+      }
+      .brand__mark {
+        font-family: var(--font-mono);
+        font-weight: 400;
+        font-size: 0.7rem;
+        letter-spacing: var(--tracking-code);
+        color: var(--color-fg-faint);
+        margin-left: 0.45rem;
       }
       nav {
         display: flex;
         gap: 1.25rem;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+        align-items: baseline;
+      }
+      nav a {
+        color: var(--color-fg-muted);
+        transition: color var(--dur-fast) var(--ease);
+      }
+      nav a:hover {
+        color: var(--color-fg);
+      }
+      .lang-toggle {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        letter-spacing: var(--tracking-code);
+        padding-inline: 0.55rem;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        line-height: 1.7;
+      }
+      .lang-toggle:hover {
+        border-color: var(--color-accent);
+        color: var(--color-accent);
       }
       main {
         min-height: calc(100dvh - 200px);
-        padding-block: 2.5rem;
       }
       .site-footer {
-        border-top: 1px solid var(--border);
+        border-top: 1px solid var(--color-border);
         padding-block: 1.25rem;
-        margin-top: 4rem;
-        font-size: 0.875rem;
+        margin-top: 5rem;
+        font-size: 0.85rem;
       }
       .site-footer__inner {
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
+        flex-wrap: wrap;
       }
     </style>
   </body>

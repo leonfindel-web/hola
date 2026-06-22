@@ -37,6 +37,14 @@ data/*.xlsx
 data/*.xls
 data/full-catalog.csv
 data/private/
+data/enriched/shards/
+# Catálogo completo derivado (1700+ filas) = dato real del cliente → NO al repo.
+# Vive local para el ingest a D1 (Fase B). El sitio buildea con el sample tracked.
+data/enriched/*.full.json
+
+# macOS metadata (this volume creates AppleDouble ._ files)
+._*
+.DS_Store
 
 # Migraciones SÍ se commitean
 !data/migrations/

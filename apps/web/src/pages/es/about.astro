@@ -1,0 +1,12 @@
+---
+import Base from '../../layouts/Base.astro';
+import AboutBody from '../../components/pages/AboutBody.astro';
+import { t } from '../../lib/i18n';
+
+const lang = 'es' as const;
+const dict = t(lang);
+---
+
+<Base lang={lang} altPath="/about" title={dict.about.title} description={dict.about.body}>
+  <AboutBody lang={lang} />
+</Base>
