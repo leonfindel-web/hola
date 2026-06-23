@@ -144,15 +144,43 @@ curl -H "x-admin-secret: $ADMIN_SECRET" \
 
 ---
 
-## 8. Pages
+## 8. Pages (frontend)
 
-Crear el proyecto Pages la primera vez (después CI lo maneja):
+El sitio es **estático** (`output: 'static'`) → Pages sirve `apps/web/dist/` sin
+bindings ni KV. Config en `apps/web/wrangler.toml` + `apps/web/.node-version`.
+
+### 8.1 Git integration (RECOMENDADO — preview automático por PR)
+
+Una sola vez, en el dashboard de Cloudflare → **Workers & Pages → Create → Pages →
+Connect to Git** → repo `jorgecub/leonfindel-web`. Valores exactos:
+
+| Campo | Valor |
+|---|---|
+| Project name | `leonfindel` |
+| Production branch | `main` |
+| Framework preset | `Astro` |
+| **Root directory** (Build settings → Advanced) | `apps/web` |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+| Environment variables | *(ninguna por ahora — el sitio es estático)* |
+
+- Node lo fija `apps/web/.node-version` (`22`), no hace falta `NODE_VERSION`.
+- Funciona con root `apps/web` porque ese paquete instala standalone (tiene su propio
+  `package-lock.json`) y CF clona el repo completo (el alias `@shared → ../../shared`
+  resuelve en el clone).
+- **Resultado:** cada push a una rama / PR genera una preview compartible
+  `https://<rama>.leonfindel.pages.dev`; `main` publica producción.
+- Cuando exista el search worker (Fase B), agregar la build env var
+  `PUBLIC_SEARCH_API=https://leonfindel-search.<subdomain>.workers.dev`.
+
+### 8.2 CLI (deploy puntual / sin Git integration)
 
 ```bash
-cd apps/web
-PUBLIC_SEARCH_API=https://leonfindel-search.<subdomain>.workers.dev npm run build
-wrangler pages deploy dist --project-name=leonfindel
+wrangler login && wrangler whoami   # verificar cuenta
+npm --prefix apps/web run deploy     # astro build && wrangler pages deploy
 ```
+
+> La primera vez `wrangler pages deploy` crea el proyecto `leonfindel` si no existe.
 
 ---
 

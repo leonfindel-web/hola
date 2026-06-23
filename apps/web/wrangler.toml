@@ -1,0 +1,7 @@
+# Cloudflare Pages — frontend (Astro).
+# El sitio es estático (astro.config `output: 'static'`) → Pages sirve `dist/`
+# sin bindings, sin KV, sin Functions. El warning de `SESSION` en `astro dev`
+# es solo del adapter en dev; el build estático no lo usa.
+name = "leonfindel"
+compatibility_date = "2025-06-01"
+pages_build_output_dir = "dist"
