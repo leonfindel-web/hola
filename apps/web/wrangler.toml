@@ -1,7 +1,12 @@
-# Cloudflare Pages — frontend (Astro).
-# El sitio es estático (astro.config `output: 'static'`) → Pages sirve `dist/`
-# sin bindings, sin KV, sin Functions. El warning de `SESSION` en `astro dev`
-# es solo del adapter en dev; el build estático no lo usa.
+# Cloudflare Workers (static assets) — frontend (Astro).
+# CF ya no crea proyectos Pages nuevos; este sitio se despliega como Worker con
+# assets estáticos. El build de @astrojs/cloudflare emite dist/_worker.js/index.js
+# como entry y todo lo demás de dist/ se sirve como assets.
 name = "leonfindel"
+main = "./dist/_worker.js/index.js"
 compatibility_date = "2025-06-01"
-pages_build_output_dir = "dist"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
