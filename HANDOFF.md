@@ -70,7 +70,10 @@ Otros comandos útiles (desde la raíz): `npm run build:web`, `npm run typecheck
 - El **catálogo completo (1732 registros)** vive en `data/enriched/catalog-enriched.full.json`,
   que está **gitignoreado** (regla dura: no subir datos del cliente al repo). **No está en GitHub.**
   - Para obtenerlo: pídeselo a quien te entrega el proyecto, **o regenéralo** desde el Google Sheet
-    público (el ID y el proceso están en `data/discovery.md`). Va a D1 en el ingest (Fase B), no al repo.
+    público con `npm run catalog:regen` (script `scripts/regenerate-catalog.mjs`). Va a D1 en el
+    ingest (Fase B), no al repo.
+  - Nota: el script deriva `cliente`/`tipo`/`tags` con heurística de keywords (aproximación de la
+    versión canónica que se hizo con IA). Suficiente para desarrollar; el `normalize.ts` de Fase 3 lo refina.
 - Nunca subas al repo el catálogo completo ni secrets. Ver `.gitignore` y `CLAUDE.md`.
 
 ---

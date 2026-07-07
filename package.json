@@ -12,6 +12,7 @@
     "deploy:web": "npm --prefix apps/web run deploy",
     "deploy:ingest": "npm --prefix workers/ingest run deploy",
     "deploy:search": "npm --prefix workers/search run deploy",
+    "catalog:regen": "node scripts/regenerate-catalog.mjs",
     "test": "npm --prefix workers/ingest test --if-present && npm --prefix workers/search test --if-present",
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write .",
