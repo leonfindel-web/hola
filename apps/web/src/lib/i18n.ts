@@ -89,7 +89,7 @@ const en: Dictionary = {
   nav: { work: 'Work', about: 'About', contact: 'Contact', home: 'Home', games: 'Games' },
   home: {
     h1: 'An archive in motion.',
-    sub: 'Twenty years of industrial, academic and corporate film and photography from Chile — catalogued and searchable.',
+    sub: '15 years of video editing and photography for industry, academia and corporate clients in Chile — catalogued and searchable.',
     ctaPrimary: 'Search the archive',
     ctaSecondary: 'About the studio',
     enterArchive: 'Browse by client, type or year',
@@ -97,7 +97,7 @@ const en: Dictionary = {
   },
   work: {
     title: 'The Archive',
-    intro: 'Twenty years of film and photography, indexed. Filter by service type, client, year or place.',
+    intro: '15 years of video editing and photography, indexed. Filter by service type, client, year or place.',
     searchPlaceholder: 'Search by client, project, place or year…',
     filterAll: 'All',
     filterService: 'Service type',
@@ -144,7 +144,7 @@ const es: Dictionary = {
   nav: { work: 'Trabajo', about: 'Estudio', contact: 'Contacto', home: 'Inicio', games: 'Juegos' },
   home: {
     h1: 'Un archivo en movimiento.',
-    sub: 'Veinte años de cine y fotografía industrial, académica y corporativa de Chile — catalogados y buscables.',
+    sub: '15 años de video edición y fotografía industrial, académica y corporativa en Chile — catalogados y buscables.',
     ctaPrimary: 'Busca el archivo',
     ctaSecondary: 'Sobre el estudio',
     enterArchive: 'Explora por cliente, tipo o año',
@@ -152,7 +152,7 @@ const es: Dictionary = {
   },
   work: {
     title: 'El Archivo',
-    intro: 'Veinte años de cine y fotografía, indexados. Filtra por tipo de servicio, cliente, año o lugar.',
+    intro: '15 años de video edición y fotografía, indexados. Filtra por tipo de servicio, cliente, año o lugar.',
     searchPlaceholder: 'Busca por cliente, proyecto, lugar o año…',
     filterAll: 'Todos',
     filterService: 'Tipo de servicio',
