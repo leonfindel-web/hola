@@ -75,7 +75,7 @@
 
     {#if hits.length === 0}
       <div class="empty">
-        <p>No hay resultados todavía. Empezá tipeando un cliente, año, locación o palabra clave.</p>
+        <p>No hay resultados todavía. Empieza a escribir un cliente, año, ubicación o palabra clave.</p>
       </div>
     {:else}
       <ul class="grid">

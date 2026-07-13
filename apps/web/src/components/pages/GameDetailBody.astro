@@ -1,0 +1,76 @@
+---
+import { localizedPath, type Lang } from '../../lib/i18n';
+import type { GameEntry } from '../../lib/games-data';
+
+interface Props {
+  lang: Lang;
+  game: GameEntry;
+}
+const { lang, game } = Astro.props;
+const backHref = localizedPath(lang, '/games');
+const backLabel = lang === 'es' ? 'Volver a Juegos' : 'Back to Games';
+---
+
+<article class="detail container">
+  <a class="back" href={backHref}>← {backLabel}</a>
+
+  <header class="detail__head">
+    <p class="detail__code">{game.code}</p>
+    <h1>{game.title[lang]}</h1>
+    <p class="detail__sub">{game.description[lang]}</p>
+  </header>
+
+  <div class="player">
+    <iframe src={`/games/${game.file}`} title={game.title[lang]} loading="lazy" />
+  </div>
+</article>
+
+<style>
+  .detail {
+    max-width: 1080px;
+    padding-block: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  .back {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: var(--tracking-code);
+    color: var(--color-fg-muted);
+    margin-bottom: 2rem;
+  }
+  .back:hover {
+    color: var(--color-accent);
+  }
+  .detail__code {
+    font-family: var(--font-mono);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    letter-spacing: var(--tracking-code);
+    color: var(--color-accent);
+    margin: 0 0 0.6rem;
+  }
+  .detail__head h1 {
+    font-size: clamp(1.9rem, 4.5vw, 3rem);
+    line-height: 1.08;
+    margin: 0 0 0.6rem;
+    text-wrap: balance;
+  }
+  .detail__sub {
+    color: var(--color-fg-muted);
+    margin: 0 0 2rem;
+    font-size: 1.05rem;
+    max-width: var(--maxw-prose);
+  }
+  .player {
+    height: min(80vh, 720px);
+    background: var(--color-bg-elev);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .player iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+</style>

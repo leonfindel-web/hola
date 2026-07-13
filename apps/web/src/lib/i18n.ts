@@ -29,6 +29,7 @@ export interface Dictionary {
     about: string;
     contact: string;
     home: string;
+    games: string;
   };
   home: {
     h1: string;
@@ -85,7 +86,7 @@ export interface Dictionary {
 }
 
 const en: Dictionary = {
-  nav: { work: 'Work', about: 'About', contact: 'Contact', home: 'Home' },
+  nav: { work: 'Work', about: 'About', contact: 'Contact', home: 'Home', games: 'Games' },
   home: {
     h1: 'An archive in motion.',
     sub: 'Twenty years of industrial, academic and corporate film and photography from Chile — catalogued and searchable.',
@@ -140,19 +141,19 @@ const en: Dictionary = {
 };
 
 const es: Dictionary = {
-  nav: { work: 'Trabajo', about: 'Estudio', contact: 'Contacto', home: 'Inicio' },
+  nav: { work: 'Trabajo', about: 'Estudio', contact: 'Contacto', home: 'Inicio', games: 'Juegos' },
   home: {
     h1: 'Un archivo en movimiento.',
     sub: 'Veinte años de cine y fotografía industrial, académica y corporativa de Chile — catalogados y buscables.',
-    ctaPrimary: 'Buscá el archivo',
+    ctaPrimary: 'Busca el archivo',
     ctaSecondary: 'Sobre el estudio',
-    enterArchive: 'Explorá por cliente, tipo o año',
-    scroll: 'Bajá',
+    enterArchive: 'Explora por cliente, tipo o año',
+    scroll: 'Baja',
   },
   work: {
     title: 'El Archivo',
-    intro: 'Veinte años de cine y fotografía, indexados. Filtrá por tipo de servicio, cliente, año o lugar.',
-    searchPlaceholder: 'Buscá por cliente, proyecto, lugar o año…',
+    intro: 'Veinte años de cine y fotografía, indexados. Filtra por tipo de servicio, cliente, año o lugar.',
+    searchPlaceholder: 'Busca por cliente, proyecto, lugar o año…',
     filterAll: 'Todos',
     filterService: 'Tipo de servicio',
     filterClient: 'Cliente',
@@ -161,8 +162,8 @@ const es: Dictionary = {
     nounSingular: 'pieza',
     nounPlural: 'piezas',
     clearFilters: 'Limpiar filtros',
-    emptyDefault: 'Empezá a escribir, o explorá el archivo completo abajo.',
-    emptyNoResults: 'No hay coincidencias — probá un término más amplio.',
+    emptyDefault: 'Empieza a escribir, o explora el archivo completo abajo.',
+    emptyNoResults: 'No hay coincidencias — prueba un término más amplio.',
   },
   detail: {
     back: 'Volver al archivo',
@@ -187,7 +188,7 @@ const es: Dictionary = {
   },
   contact: {
     title: 'Contacto',
-    body: 'Para encargos, licenciamiento de material de archivo, o acceso al catálogo completo, escribinos.',
+    body: 'Para encargos, licenciamiento de material de archivo, o acceso al catálogo completo, escríbenos.',
     emailLabel: 'Correo',
   },
   footer: { tagline: 'Estudio audiovisual chileno — archivo en movimiento.' },

@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import GamesBody from '../../components/pages/GamesBody.astro';
+
+const lang = 'en' as const;
+---
+
+<Base
+  lang={lang}
+  altPath="/games"
+  title="Games — Leonfindel"
+  description="Corte Ferpecto: educational mini-games about film editing, made by Leonfindel."
+>
+  <GamesBody lang={lang} />
+</Base>

@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import GameDetailBody from '../../components/pages/GameDetailBody.astro';
+import { GAMES } from '../../lib/games-data';
+
+export function getStaticPaths() {
+  return GAMES.map((game) => ({
+    params: { slug: game.slug },
+    props: { game },
+  }));
+}
+
+const { game } = Astro.props;
+const lang = 'en' as const;
+---
+
+<Base
+  lang={lang}
+  altPath={`/games/${game.slug}`}
+  title={`${game.title[lang]} — Games — Leonfindel`}
+  description={game.description[lang]}
+>
+  <GameDetailBody lang={lang} game={game} />
+</Base>
