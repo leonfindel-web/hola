@@ -2,7 +2,7 @@
 # CF ya no crea proyectos Pages nuevos; este sitio se despliega como Worker con
 # assets estáticos. El build de @astrojs/cloudflare emite dist/_worker.js/index.js
 # como entry y todo lo demás de dist/ se sirve como assets.
-name = "leonfindel"
+name = "hola"
 main = "./dist/_worker.js/index.js"
 compatibility_date = "2025-06-01"
 compatibility_flags = ["nodejs_compat"]
