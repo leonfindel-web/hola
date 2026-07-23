@@ -1,11 +1,11 @@
 /**
  * Static list of "Corte Ferpecto" mini-games. Educational HTML5 games about
  * film/video editing, separate from the audiovisual catalog. Each game is a
- * self-contained static HTML file served from /public/games and embedded via
+ * self-contained static HTML file served from /public/games-raw and embedded via
  * iframe inside the site chrome (Base layout).
  *
  * To add/remove a game: edit this list and drop the HTML file in
- * apps/web/public/games/. No other code changes needed.
+ * apps/web/public/games-raw/. No other code changes needed.
  */
 
 export interface GameEntry {
@@ -24,7 +24,7 @@ export const GAMES: GameEntry[] = [
     title: { en: 'Set the shot', es: 'Organiza la toma' },
     description: {
       en: 'Arrange the elements of a film set before the camera rolls.',
-      es: 'Ordena los elementos de un set de rodaje antes de que ruede la cámara.',
+      es: 'Ordena los elementos de un set de rodaje antes de que ruede la camara.',
     },
   },
   {
@@ -34,7 +34,7 @@ export const GAMES: GameEntry[] = [
     title: { en: 'Connect the cable', es: 'Conecta el cable' },
     description: {
       en: 'A mini-game about cabling and technical setup on location.',
-      es: 'Un mini-juego sobre cableado y setup técnico en terreno.',
+      es: 'Un mini-juego sobre cableado y setup tecnico en terreno.',
     },
   },
   {
@@ -74,7 +74,7 @@ export const GAMES: GameEntry[] = [
     title: { en: "Maze: Diego's route", es: 'Laberinto: la ruta de Diego' },
     description: {
       en: 'Guide the camera operator through the set maze to the final shot.',
-      es: 'Guía al camarógrafo por el laberinto de un set hasta la toma final.',
+      es: 'Guia al camarografo por el laberinto de un set hasta la toma final.',
     },
   },
   {
@@ -84,7 +84,7 @@ export const GAMES: GameEntry[] = [
     title: { en: 'Corte Ferpecto: color eye', es: 'Corte Ferpecto: ojo de color' },
     description: {
       en: 'Test your eye for color correction between shots.',
-      es: 'Pon a prueba tu ojo para la corrección de color entre tomas.',
+      es: 'Pon a prueba tu ojo para la correccion de color entre tomas.',
     },
   },
   {
@@ -92,15 +92,25 @@ export const GAMES: GameEntry[] = [
     slug: 'corte-ferpecto',
     file: 'corte-ferpecto.html',
     title: {
-      en: 'Corte Ferpecto — edit with heart or die',
-      es: 'Corte Ferpecto — edita con corazón o muere',
+      en: 'Corte Ferpecto - edit with heart or die',
+      es: 'Corte Ferpecto - edita con corazon o muere',
     },
     description: {
       en: 'The flagship game of the series: edit against the clock, with judgment.',
       es: 'El juego principal de la serie: edita contra el reloj y con criterio.',
     },
   },
-];
+  {
+    code: 'G09',
+    slug: 'secuencias-perfectas',
+    file: 'secuencias-perfectas.html',
+    title: { en: 'Perfect sequences', es: 'Secuencias perfectas' },
+    description: {
+      en: 'Reorder the production layers into the correct sequence before time runs out.',
+      es: 'Ordena las capas de produccion en la secuencia correcta antes de que se acabe el tiempo.',
+    },
+  },
+  ];
 
 export function getGame(slug: string): GameEntry | undefined {
   return GAMES.find((g) => g.slug === slug);
